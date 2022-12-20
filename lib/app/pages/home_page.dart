@@ -1,0 +1,272 @@
+import 'package:flutter/material.dart';
+import 'package:music_app/app/widgets/components/music_app_bottom_navigation_bar.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _body(),
+      bottomNavigationBar: const MusicAppBottomNavigationBar(),
+    );
+  }
+
+  _body() {
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 24),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Olá Yago!',
+                        style: TextStyle(
+                          fontSize: 22,
+                        ),
+                      ),
+                      Text(
+                        'Vamos ouvir algo legal hoje',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      )
+                    ],
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF474855),
+                    ),
+                    child: const Icon(
+                      Icons.notifications_none,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            _sectionLabel(sectionName: 'Seus artistas favoritos'),
+            const SizedBox(height: 12),
+            SizedBox(
+              height: 120,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  const SizedBox(
+                    width: 24,
+                  ),
+                  _artistCircle(
+                    name: 'Hariel',
+                    image: 'assets/images/mc-hariel.jpeg',
+                  ),
+                  _artistCircle(
+                    name: 'Djonga',
+                    image: 'assets/images/djonga.jpeg',
+                  ),
+                  _artistCircle(
+                    name: 'Kevin',
+                    image: 'assets/images/kevin.png',
+                  ),
+                  _artistCircle(
+                    name: 'RianSP',
+                    image: 'assets/images/rian-sp.webp',
+                  ),
+                  _artistCircle(),
+                  _artistCircle(),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            _sectionLabel(sectionName: 'Tocadas recentemente'),
+            const SizedBox(
+              height: 12,
+            ),
+            SizedBox(
+              height: 200,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  const SizedBox(
+                    width: 24,
+                  ),
+                  _musicCard(
+                    name: 'Ano de Copa',
+                    image: 'assets/images/ano-de-copa.jpg',
+                  ),
+                  _musicCard(
+                    name: 'GTA SP',
+                    image: 'assets/images/gta-sp.jpeg',
+                  ),
+                  _musicCard(
+                    name: 'Role no Tempo',
+                    image: 'assets/images/role-no-tempo.jpg',
+                  ),
+                  _musicCard(
+                    name: 'Set dos Casados',
+                    image: 'assets/images/set-dos-casados.jpeg',
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            _sectionLabel(sectionName: 'Feito pra você'),
+            const SizedBox(
+              height: 12,
+            ),
+            SizedBox(
+              height: 160,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  const SizedBox(
+                    width: 24,
+                  ),
+                  _playlistCard(
+                    name: 'Rap Nacional',
+                    image: 'assets/images/rap.jpeg',
+                  ),
+                  _playlistCard(
+                    name: 'Funk',
+                    image: 'assets/images/funk.jpeg',
+                  ),
+                  _playlistCard(
+                    name: 'Trap Funk',
+                    image: 'assets/images/trap.webp',
+                  ),
+                  _playlistCard(
+                    name: 'Daily',
+                    image: 'assets/images/set-dos-casados.jpeg',
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 36),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Padding _sectionLabel({required String sectionName}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(sectionName),
+          const Icon(
+            Icons.navigate_next,
+            color: Colors.white,
+          ),
+        ],
+      ),
+    );
+  }
+
+  _artistCircle({String? name, String? image}) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 18.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 80,
+            height: 80,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.grey,
+              image: DecorationImage(
+                image: AssetImage(image ?? 'assets/images/user.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            name ?? 'Sem nome',
+            style: const TextStyle(fontSize: 12),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _musicCard({required String name, String? image}) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 12.0),
+      child: Column(
+        children: [
+          Container(
+            width: 160,
+            height: 160,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              image: DecorationImage(
+                image: AssetImage(image ?? 'assets/images/user.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          Text(
+            name,
+            style: const TextStyle(fontSize: 12),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _playlistCard({required String name, String? image}) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: SizedBox(
+        width: 160,
+        child: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                image: DecorationImage(
+                  image: AssetImage(image ?? 'assets/images/user.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              child: Text(
+                name,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(color: Colors.black, blurRadius: 12),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
