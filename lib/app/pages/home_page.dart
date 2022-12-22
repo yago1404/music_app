@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/app/pages/search_page.dart';
 import 'package:music_app/app/widgets/components/music_app_bottom_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,15 +10,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int currentPage = 0;
+  late final List<Widget> pages = [
+    _home(),
+    const SearchPage(),
+    const SearchPage(),
+    const SearchPage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _body(),
-      bottomNavigationBar: const MusicAppBottomNavigationBar(),
+      body: pages[currentPage],
+      bottomNavigationBar: MusicAppBottomNavigationBar(onChangePage: _onChangePage,),
     );
   }
 
-  _body() {
+  Widget _home() {
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -268,5 +277,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  _onChangePage({required int page}) {
+    setState(() {
+      currentPage = page;
+    });
   }
 }

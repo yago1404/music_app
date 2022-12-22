@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class MusicAppBottomNavigationBar extends StatefulWidget {
-  const MusicAppBottomNavigationBar({Key? key}) : super(key: key);
+  final Function({required int page}) onChangePage;
+
+  const MusicAppBottomNavigationBar({Key? key, required this.onChangePage}) : super(key: key);
 
   @override
   State<MusicAppBottomNavigationBar> createState() =>
@@ -38,6 +40,7 @@ class _MusicAppBottomNavigationBarState extends State<MusicAppBottomNavigationBa
         setState(() {
           currentIndex = id;
         });
+        widget.onChangePage(page: id);
       },
       child: Container(
         decoration: BoxDecoration(

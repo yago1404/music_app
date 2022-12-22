@@ -23,6 +23,18 @@ class App extends StatelessWidget {
         <int, Color>{},
       ),
       scaffoldBackgroundColor: const Color(0xFF070A0A),
+      inputDecorationTheme: const InputDecorationTheme(
+        hintStyle: TextStyle(
+          color: Colors.grey,
+          fontSize: 12,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey, width: 1),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.green, width: 1),
+        ),
+      ),
       textTheme: const TextTheme(
         bodyText1: TextStyle(
           color: Colors.grey,
