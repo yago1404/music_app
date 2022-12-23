@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/api/models/artist.dart';
+import 'package:music_app/api/models/music.dart';
+import 'package:music_app/app/widgets/components/music_app_music_tile.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -58,10 +61,11 @@ class _SearchPageState extends State<SearchPage> {
           ),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              children: const [
-                SizedBox(height: 20),
-                Text('teste'),
+              children: [
+                const SizedBox(height: 20),
+                MusicAppMusicTile(music: Music(name: 'Ano de copa', image: 'assets/images/ano-de-copa.jpg', author: Artist(name: 'Mc Hariel', photo: 'assets/images/mc-hariel.jpeg'), ),),
+                MusicAppMusicTile(music: Music(name: 'GTA SP', image: 'assets/images/gta-sp.jpeg', author: Artist(name: 'Major', photo: 'assets/images/mc-hariel.jpeg'), ),),
+                MusicAppMusicTile(music: Music(name: 'Rolê no tempo', image: 'assets/images/role-no-tempo.jpg', author: Artist(name: 'Kevin', photo: 'assets/images/kevin.png'), ),),
               ],
             ),
           ),
