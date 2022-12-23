@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_app/app/blocs/home_bloc/bloc.dart';
+import 'package:music_app/app/ultils/blocs_list.dart';
+import 'package:music_app/app/ultils/repositories_list.dart';
 
 import 'pages/home_page.dart';
 
@@ -7,12 +11,18 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      darkTheme: _theme(),
-      themeMode: ThemeMode.dark,
-      home: const HomePage(),
+    return MultiRepositoryProvider(
+      providers: getRepositories(context),
+      child: MultiBlocProvider(
+        providers: getBlocsList(context),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          darkTheme: _theme(),
+          themeMode: ThemeMode.dark,
+          home: const HomePage(),
+        ),
+      ),
     );
   }
 
