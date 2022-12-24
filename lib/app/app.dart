@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_app/app/blocs/home_bloc/bloc.dart';
 import 'package:music_app/app/ultils/blocs_list.dart';
 import 'package:music_app/app/ultils/repositories_list.dart';
 
