@@ -6,3 +6,5 @@ class HomeState extends Equatable {
 }
 
 class Loading extends HomeState {}
+
+class Loaded extends HomeState {}

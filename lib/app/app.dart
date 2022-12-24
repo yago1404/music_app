@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_app/api/repositories/home_repository.dart';
 
+import 'blocs/home_bloc/bloc.dart';
 import 'pages/home_page.dart';
 import 'utils/blocs_list.dart';
 import 'utils/repositories_list.dart';
@@ -11,9 +13,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
-      providers: getRepositories(context),
+      providers: repositoriesList,
       child: MultiBlocProvider(
-        providers: getBlocsList(context),
+        providers: blocList,
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

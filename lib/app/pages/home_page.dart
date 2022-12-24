@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_app/api/repositories/home_repository.dart';
+import 'package:music_app/app/blocs/home_bloc/bloc.dart';
 import 'package:music_app/app/pages/search_page.dart';
 import 'package:music_app/app/widgets/components/music_app_bottom_navigation_bar.dart';
 
@@ -17,6 +20,12 @@ class _HomePageState extends State<HomePage> {
     const SearchPage(),
     const SearchPage(),
   ];
+
+  @override
+  void initState() {
+    context.read<HomeBloc>().add(FetchData());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,31 +80,24 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 12),
             SizedBox(
               height: 120,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  const SizedBox(
-                    width: 24,
-                  ),
-                  _artistCircle(
-                    name: 'Hariel',
-                    image: 'assets/images/mc-hariel.jpeg',
-                  ),
-                  _artistCircle(
-                    name: 'Djonga',
-                    image: 'assets/images/djonga.jpeg',
-                  ),
-                  _artistCircle(
-                    name: 'Kevin',
-                    image: 'assets/images/kevin.png',
-                  ),
-                  _artistCircle(
-                    name: 'RianSP',
-                    image: 'assets/images/rian-sp.webp',
-                  ),
-                  _artistCircle(),
-                  _artistCircle(),
-                ],
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  if (state is Loading) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        SizedBox(width: 50, height: 50, child: CircularProgressIndicator()),
+                      ],
+                    );
+                  }
+                  return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: context.read<HomeRepository>().favoriteArtist.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(padding: EdgeInsets.only(left: index == 0 ? 24 : 0), child: _artistCircle(name: context.read<HomeRepository>().favoriteArtist[index].name, image: context.read<HomeRepository>().favoriteArtist[index].photo,),);
+                  },
+                );
+              }
               ),
             ),
             const SizedBox(height: 24),
