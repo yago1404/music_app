@@ -94,7 +94,13 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: context.read<HomeRepository>().favoriteArtist.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Padding(padding: EdgeInsets.only(left: index == 0 ? 24 : 0), child: _artistCircle(name: context.read<HomeRepository>().favoriteArtist[index].name, image: context.read<HomeRepository>().favoriteArtist[index].photo,),);
+                    return Padding(
+                      padding: EdgeInsets.only(left: index == 0 ? 24 : 0),
+                      child: _artistCircle(
+                        name: context.read<HomeRepository>().favoriteArtist[index].name,
+                        image: context.read<HomeRepository>().favoriteArtist[index].photo,
+                      ),
+                    );
                   },
                 );
               }

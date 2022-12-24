@@ -14,12 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future _fetchData(FetchData event, Emitter<HomeState> emit) async {
-    await Future.delayed(const Duration(seconds: 2));
-    homeRepository.favoriteArtist.add(Artist(name: 'Hariel', photo: 'assets/images/mc-hariel.jpeg'));
-    homeRepository.favoriteArtist.add(Artist(name: 'Djonga', photo: 'assets/images/djonga.jpeg'));
-    homeRepository.favoriteArtist.add(Artist(name: 'Kevin', photo: 'assets/images/kevin.png'));
-    homeRepository.favoriteArtist.add(Artist(name: 'Rian SP', photo: 'assets/images/rian-sp.webp'));
-    homeRepository.favoriteArtist.add(Artist(name: 'Kant', photo: 'assets/images/kant.jpeg'));
+    await homeRepository.fetchFavoriteArtist();
     emit(Loaded());
   }
 }
