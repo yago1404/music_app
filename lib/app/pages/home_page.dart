@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Padding _sectionLabel({required String sectionName}) {
+  _sectionLabel({required String sectionName}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Row(
