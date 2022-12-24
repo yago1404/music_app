@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/app/blocs/home_bloc/bloc.dart';
 import 'package:music_app/app/ultils/blocs_list.dart';
@@ -18,7 +19,7 @@ class App extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          darkTheme: _theme(),
+          darkTheme: _theme(context),
           themeMode: ThemeMode.dark,
           home: const HomePage(),
         ),
@@ -26,7 +27,7 @@ class App extends StatelessWidget {
     );
   }
 
-  ThemeData _theme() {
+  ThemeData _theme(BuildContext context) {
     return ThemeData(
       primaryColor: const MaterialColor(
         0xFF070A0A,
