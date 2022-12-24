@@ -27,6 +27,7 @@ class App extends StatelessWidget {
 
   ThemeData _theme(BuildContext context) {
     return ThemeData(
+      primarySwatch: Colors.green,
       primaryColor: const MaterialColor(
         0xFF070A0A,
         <int, Color>{},
