@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:music_app/api/models/exceptions/api_exception.dart';
 
 class MainService {
 
@@ -25,7 +26,10 @@ class MainService {
 
   Future<Map<String, dynamic>> _validateResponse(http.Response response) async {
     if (response.statusCode > 399) {
-      throw Exception('Invalid status code ${response.statusCode}');
+      throw ApiException(
+        message: 'Invalid status code ${response.statusCode}',
+        statusCode: response.statusCode,
+      );
     }
     return jsonDecode(response.body);
   }
