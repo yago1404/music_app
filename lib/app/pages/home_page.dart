@@ -113,29 +113,30 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(
               height: 200,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  const SizedBox(
-                    width: 24,
-                  ),
-                  _musicCard(
-                    name: 'Ano de Copa',
-                    image: 'assets/images/ano-de-copa.jpg',
-                  ),
-                  _musicCard(
-                    name: 'GTA SP',
-                    image: 'assets/images/gta-sp.jpeg',
-                  ),
-                  _musicCard(
-                    name: 'Role no Tempo',
-                    image: 'assets/images/role-no-tempo.jpg',
-                  ),
-                  _musicCard(
-                    name: 'Set dos Casados',
-                    image: 'assets/images/set-dos-casados.jpeg',
-                  ),
-                ],
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  if (state is Loading) {
+                    return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      SizedBox(width: 50, height: 50, child: CircularProgressIndicator()),
+                    ],
+                  );
+                  }
+                  return ListView.builder(
+                    itemCount: context.read<HomeRepository>().recentPlayed.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                      padding: EdgeInsets.only(left: index == 0 ? 24.0 : 0),
+                      child: _musicCard(
+                        name: context.read<HomeRepository>().recentPlayed[index].name,
+                        image: context.read<HomeRepository>().recentPlayed[index].image,
+                      ),
+                    );
+                    },
+                  );
+                }
               ),
             ),
             const SizedBox(height: 24),
