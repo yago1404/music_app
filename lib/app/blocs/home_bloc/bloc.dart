@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_app/api/models/artist.dart';
 import 'package:music_app/api/repositories/home_repository.dart';
 
 part 'state.dart';
