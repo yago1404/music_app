@@ -17,7 +17,10 @@ class HomeRepository {
     favoriteArtist.add(Artist(name: 'Kevin', photo: 'assets/images/kevin.png'));
     favoriteArtist.add(Artist(name: 'Rian SP', photo: 'assets/images/rian-sp.webp'));
     favoriteArtist.add(Artist(name: 'Kant', photo: 'assets/images/kant.jpeg'));
+  }
 
+  fetchRecentPlayed() async {
+    await Future.delayed(const Duration(seconds: 2));
     recentPlayed.add(
       Music(
         name: 'Rolê no Tempo',

@@ -14,6 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future _fetchData(FetchData event, Emitter<HomeState> emit) async {
     await homeRepository.fetchFavoriteArtist();
+    await homeRepository.fetchRecentPlayed();
     emit(Loaded());
   }
 }
