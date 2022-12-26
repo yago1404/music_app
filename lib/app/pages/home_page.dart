@@ -146,29 +146,34 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(
               height: 160,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  const SizedBox(
-                    width: 24,
-                  ),
-                  _playlistCard(
-                    name: 'Rap Nacional',
-                    image: 'assets/images/rap.jpeg',
-                  ),
-                  _playlistCard(
-                    name: 'Funk',
-                    image: 'assets/images/funk.jpeg',
-                  ),
-                  _playlistCard(
-                    name: 'Trap Funk',
-                    image: 'assets/images/trap.webp',
-                  ),
-                  _playlistCard(
-                    name: 'Daily',
-                    image: 'assets/images/set-dos-casados.jpeg',
-                  ),
-                ],
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  if (state is Loading) {
+                    return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(),
+                      ),
+                    ],
+                  );
+                }
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: context.read<HomeRepository>().forYou.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                      padding: EdgeInsets.only(left: index == 0 ? 24 : 0),
+                      child: _playlistCard(
+                          name: context.read<HomeRepository>().forYou[index].name,
+                          image: context.read<HomeRepository>().forYou[index].image,
+                      ),
+                    );
+                  },
+                  );
+                }
               ),
             ),
             const SizedBox(height: 36),
