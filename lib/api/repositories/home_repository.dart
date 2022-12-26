@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:music_app/api/main_service.dart';
 import 'package:music_app/api/models/artist.dart';
 import 'package:music_app/api/models/music.dart';
+import 'package:music_app/api/models/playlist.dart';
 
 class HomeRepository {
   MainService mainService;
   List<Artist> favoriteArtist = [];
   List<Music> recentPlayed = [];
+  List<Playlist> forYou = [];
 
   HomeRepository({required BuildContext context}) : mainService = MainService(context);
 
@@ -49,6 +51,58 @@ class HomeRepository {
           name: 'Mc Hariel',
           photo: 'assets/images/mc-hariel.jpeg',
         ),
+      ),
+    );
+  }
+
+  fetchForYou() async {
+    await Future.delayed(const Duration(seconds: 2));
+    forYou.add(
+      Playlist(
+        image: 'assets/images/rap.jpeg',
+        name: 'Rap Nacional',
+        musics: [
+          Music(
+            name: 'Rolê no Tempo',
+            image: 'assets/images/role-no-tempo.jpg',
+            author: Artist(
+              name: 'Kevin',
+              photo: 'assets/images/kevin.png',
+            ),
+          ),
+        ],
+      ),
+    );
+    forYou.add(
+      Playlist(
+        image: 'assets/images/funk.jpeg',
+        name: 'Funk',
+        musics: [
+          Music(
+            name: 'Rolê no Tempo',
+            image: 'assets/images/role-no-tempo.jpg',
+            author: Artist(
+              name: 'Kevin',
+              photo: 'assets/images/kevin.png',
+            ),
+          ),
+        ],
+      ),
+    );
+    forYou.add(
+      Playlist(
+        image: 'assets/images/trap.webp',
+        name: 'Trap Funk',
+        musics: [
+          Music(
+            name: 'Rolê no Tempo',
+            image: 'assets/images/role-no-tempo.jpg',
+            author: Artist(
+              name: 'Kevin',
+              photo: 'assets/images/kevin.png',
+            ),
+          ),
+        ],
       ),
     );
   }
