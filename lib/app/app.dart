@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/api/repositories/home_repository.dart';
 
 import 'blocs/home_bloc/bloc.dart';
+import 'blocs/search_bloc/bloc.dart';
 import 'pages/home_page.dart';
-import 'utils/blocs_list.dart';
 import 'utils/repositories_list.dart';
 
 class App extends StatelessWidget {
@@ -15,7 +15,14 @@ class App extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: repositoriesList,
       child: MultiBlocProvider(
-        providers: blocList,
+        providers: [
+          BlocProvider(
+            create: (context) => HomeBloc(homeRepository: context.read<HomeRepository>()),
+          ),
+          BlocProvider(
+            create: (context) => SearchBloc(),
+          ),
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

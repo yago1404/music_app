@@ -86,8 +86,12 @@ class _HomePageState extends State<HomePage> {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
-                        SizedBox(width: 50, height: 50, child: CircularProgressIndicator()),
-                      ],
+                        SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(),
+                      ),
+                    ],
                     );
                   }
                   return ListView.builder(
