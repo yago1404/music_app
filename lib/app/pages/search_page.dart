@@ -133,7 +133,9 @@ class _SearchPageState extends State<SearchPage> {
           ),
           child: Text(
             name,
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(color: _currentFilter == index ? Colors.white : Colors.green,),
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  color: _currentFilter == index ? Colors.white : Colors.green,
+                ),
           ),
         ),
       ),
