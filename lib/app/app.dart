@@ -28,7 +28,10 @@ class App extends StatelessWidget {
           title: 'Flutter Demo',
           darkTheme: _theme(context),
           themeMode: ThemeMode.dark,
-          home: const DashboardPage(),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const DashboardPage(),
+          },
         ),
       ),
     );
