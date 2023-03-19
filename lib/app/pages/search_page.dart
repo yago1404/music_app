@@ -5,10 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/api/models/artist.dart';
 import 'package:music_app/api/models/music.dart';
 import 'package:music_app/api/models/playlist.dart';
-import 'package:music_app/api/repositories/home_repository.dart';
+import 'package:music_app/api/repositories/core_repository.dart';
 import 'package:music_app/app/blocs/search_bloc/bloc.dart';
 import 'package:music_app/app/widgets/components/cards/music_app_playlist_card.dart';
-import 'package:music_app/app/widgets/components/music_app_music_tile.dart';
+import 'package:music_app/app/widgets/components/tiles/music_app_music_tile.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -89,7 +89,7 @@ class _SearchPageState extends State<SearchPage> {
                     mainAxisSpacing: 10,
                     crossAxisCount: 2,
                     children: [
-                      for (Playlist playlist in context.read<HomeRepository>().forYou) ...[
+                      for (Playlist playlist in context.read<CoreRepository>().forYou) ...[
                         MusicAppPlaylistCard(name: playlist.name, image: playlist.image)
                       ],
                     ],
@@ -103,7 +103,7 @@ class _SearchPageState extends State<SearchPage> {
               return Expanded(
                 child: ListView(
                   children: [
-                    for (Music music in context.read<HomeRepository>().recentPlayed) ...[
+                    for (Music music in context.read<CoreRepository>().recentPlayed) ...[
                       MusicAppMusicTile(
                         music: music,
                       ),

@@ -4,13 +4,13 @@ import 'package:music_app/api/models/artist.dart';
 import 'package:music_app/api/models/music.dart';
 import 'package:music_app/api/models/playlist.dart';
 
-class HomeRepository {
+class CoreRepository {
   MainService mainService;
   List<Artist> favoriteArtist = [];
   List<Music> recentPlayed = [];
   List<Playlist> forYou = [];
 
-  HomeRepository({required BuildContext context}) : mainService = MainService(context);
+  CoreRepository({required BuildContext context}) : mainService = MainService(context);
 
   fetchFavoriteArtist() async {
     await Future.delayed(const Duration(seconds: 2));

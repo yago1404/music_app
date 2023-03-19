@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_app/api/repositories/home_repository.dart';
+import 'package:music_app/api/repositories/core_repository.dart';
 import 'package:music_app/app/blocs/home_bloc/bloc.dart';
 import 'package:music_app/app/widgets/components/cards/music_app_playlist_card.dart';
 
@@ -75,13 +75,13 @@ class _HomePageState extends State<HomePage> {
                   }
                   return ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: context.read<HomeRepository>().favoriteArtist.length,
+                  itemCount: context.read<CoreRepository>().favoriteArtist.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: EdgeInsets.only(left: index == 0 ? 24 : 0),
                       child: _artistCircle(
-                        name: context.read<HomeRepository>().favoriteArtist[index].name,
-                        image: context.read<HomeRepository>().favoriteArtist[index].photo,
+                        name: context.read<CoreRepository>().favoriteArtist[index].name,
+                        image: context.read<CoreRepository>().favoriteArtist[index].photo,
                       ),
                     );
                   },
@@ -107,14 +107,14 @@ class _HomePageState extends State<HomePage> {
                   );
                   }
                   return ListView.builder(
-                    itemCount: context.read<HomeRepository>().recentPlayed.length,
+                    itemCount: context.read<CoreRepository>().recentPlayed.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
                       padding: EdgeInsets.only(left: index == 0 ? 24.0 : 0),
                       child: _musicCard(
-                        name: context.read<HomeRepository>().recentPlayed[index].name,
-                        image: context.read<HomeRepository>().recentPlayed[index].image,
+                        name: context.read<CoreRepository>().recentPlayed[index].name,
+                        image: context.read<CoreRepository>().recentPlayed[index].image,
                       ),
                     );
                     },
@@ -145,13 +145,13 @@ class _HomePageState extends State<HomePage> {
                 }
                   return ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: context.read<HomeRepository>().forYou.length,
+                    itemCount: context.read<CoreRepository>().forYou.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
                       padding: EdgeInsets.only(left: index == 0 ? 24 : 0, right: 16),
                       child: MusicAppPlaylistCard(
-                          name: context.read<HomeRepository>().forYou[index].name,
-                          image: context.read<HomeRepository>().forYou[index].image,
+                          name: context.read<CoreRepository>().forYou[index].name,
+                          image: context.read<CoreRepository>().forYou[index].image,
                       ),
                     );
                   },

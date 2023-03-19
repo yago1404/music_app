@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_app/api/repositories/home_repository.dart';
+import 'package:music_app/api/repositories/core_repository.dart';
 import 'package:music_app/app/pages/dashboard_page.dart';
 
 import 'blocs/home_bloc/bloc.dart';
@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => HomeBloc(homeRepository: context.read<HomeRepository>()),
+            create: (context) => HomeBloc(homeRepository: context.read<CoreRepository>()),
           ),
           BlocProvider(
             create: (context) => SearchBloc(),
