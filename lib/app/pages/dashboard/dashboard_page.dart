@@ -15,7 +15,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int currentPage = 0;
-  late final List<Widget> pages = [
+  final List<Widget> pages = [
     const HomePage(),
     const SearchPage(),
     const PlaylistPage(),
