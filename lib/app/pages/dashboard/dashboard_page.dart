@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/app/blocs/home_bloc/bloc.dart';
 import 'package:music_app/app/pages/dashboard/home_page.dart';
 import 'package:music_app/app/pages/dashboard/playlist_page.dart';
+import 'package:music_app/app/pages/dashboard/profile_page.dart';
 import 'package:music_app/app/pages/dashboard/search_page.dart';
 import 'package:music_app/app/widgets/components/music_app_bottom_navigation_bar.dart';
 
@@ -19,7 +20,7 @@ class _DashboardPageState extends State<DashboardPage> {
     const HomePage(),
     const SearchPage(),
     const PlaylistPage(),
-    const SearchPage(),
+    const ProfilePage(),
   ];
 
   @override
