@@ -50,7 +50,10 @@ class _PlaylistPageState extends State<PlaylistPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                          Text('Adicionar Playlist'),
-                        Icon(Icons.add, color: Colors.white,)
+                        Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        )
                       ],
                     ),
                   ),
