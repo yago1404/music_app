@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/api/repositories/home_repository.dart';
+import 'package:music_app/app/pages/dashboard_page.dart';
 
 import 'blocs/home_bloc/bloc.dart';
 import 'blocs/search_bloc/bloc.dart';
-import 'pages/home_page.dart';
 import 'utils/repositories_list.dart';
 
 class App extends StatelessWidget {
@@ -28,7 +28,7 @@ class App extends StatelessWidget {
           title: 'Flutter Demo',
           darkTheme: _theme(context),
           themeMode: ThemeMode.dark,
-          home: const HomePage(),
+          home: const DashboardPage(),
         ),
       ),
     );

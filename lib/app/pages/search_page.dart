@@ -43,6 +43,7 @@ class _SearchPageState extends State<SearchPage> {
                 child: TextField(
                   controller: _searchController,
                   style: Theme.of(context).textTheme.bodyText1,
+                  onChanged: (value) => _checkClear(),
                   decoration: InputDecoration(
                     hintText: 'Procure pela musica que quer ouvir',
                     prefixIcon: GestureDetector(
@@ -139,11 +140,14 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  _search() {
+  _checkClear() {
     if (_searchController.text == '') {
       context.read<SearchBloc>().add(ClearSearch());
-      return;
     }
+  }
+
+  _search() {
+    _checkClear();
     context.read<SearchBloc>().add(Tap(value: _searchController.text));
   }
 }

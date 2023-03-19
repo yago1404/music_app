@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/api/repositories/home_repository.dart';
 import 'package:music_app/app/blocs/home_bloc/bloc.dart';
-import 'package:music_app/app/pages/search_page.dart';
 import 'package:music_app/app/widgets/components/cards/music_app_playlist_card.dart';
-import 'package:music_app/app/widgets/components/music_app_bottom_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,29 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentPage = 0;
-  late final List<Widget> pages = [
-    _home(),
-    const SearchPage(),
-    const SearchPage(),
-    const SearchPage(),
-  ];
-
-  @override
-  void initState() {
-    context.read<HomeBloc>().add(FetchData());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[currentPage],
-      bottomNavigationBar: MusicAppBottomNavigationBar(onChangePage: _onChangePage,),
-    );
-  }
-
-  Widget _home() {
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -261,11 +239,5 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
-
-  _onChangePage({required int page}) {
-    setState(() {
-      currentPage = page;
-    });
   }
 }
