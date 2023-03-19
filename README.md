@@ -20,11 +20,12 @@ A nível de funcionalidade, nossas telas se adicionam eventos aos blocs, os bloc
 
 ## Telas
 
-![screen](./assets/images/tela1.png)
-![screen](./assets/images/tela2.png)
-![screen](./assets/images/tela3.png)
-![screen](./assets/images/tela4.png)
-![screen](./assets/images/tela5.png)
+<img src="./assets/images/tela1.png" width="100">
+<img src="./assets/images/tela2.png" width="100">
+<img src="./assets/images/tela3.png" width="100">
+<img src="./assets/images/tela4.png" width="100">
+<img src="./assets/images/tela5.png" width="100">
+
 
 ## próximos passos
 
