@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/api/repositories/home_repository.dart';
 import 'package:music_app/app/blocs/home_bloc/bloc.dart';
 import 'package:music_app/app/pages/search_page.dart';
+import 'package:music_app/app/widgets/components/cards/music_app_playlist_card.dart';
 import 'package:music_app/app/widgets/components/music_app_bottom_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -169,8 +170,8 @@ class _HomePageState extends State<HomePage> {
                     itemCount: context.read<HomeRepository>().forYou.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                      padding: EdgeInsets.only(left: index == 0 ? 24 : 0),
-                      child: _playlistCard(
+                      padding: EdgeInsets.only(left: index == 0 ? 24 : 0, right: 16),
+                      child: MusicAppPlaylistCard(
                           name: context.read<HomeRepository>().forYou[index].name,
                           image: context.read<HomeRepository>().forYou[index].image,
                       ),
@@ -258,41 +259,6 @@ class _HomePageState extends State<HomePage> {
             style: const TextStyle(fontSize: 12),
           ),
         ],
-      ),
-    );
-  }
-
-  _playlistCard({required String name, String? image}) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16.0),
-      child: SizedBox(
-        width: 160,
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(
-                  image: AssetImage(image ?? 'assets/images/user.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              child: Text(
-                name,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(color: Colors.black, blurRadius: 12),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
