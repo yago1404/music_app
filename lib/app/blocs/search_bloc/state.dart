@@ -6,3 +6,13 @@ class SearchState extends Equatable {
 }
 
 class EmptySearch extends SearchState {}
+
+class Loading extends SearchState {}
+
+class Loaded extends SearchState {
+  final String searchLabel;
+
+  Loaded(this.searchLabel);
+}
+
+class Taping extends SearchState {}

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/api/models/artist.dart';
@@ -14,6 +16,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   int _currentFilter = 0;
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +32,26 @@ class _SearchPageState extends State<SearchPage> {
           Column(
             children: [
               Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 24,
+                ),
                 color: Theme.of(context).primaryColor,
                 child: TextField(
+                  controller: _searchController,
                   style: Theme.of(context).textTheme.bodyText1,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Procure pela musica que quer ouvir',
-                    prefixIcon: Icon(Icons.search, color: Colors.grey),
+                    prefixIcon: GestureDetector(
+                      onTap: _search,
+                      child: const Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                      ),
+                    ),
                   ),
+                  onEditingComplete: _search,
+                  textInputAction: TextInputAction.search,
                 ),
               ),
               SizedBox(
@@ -61,81 +75,89 @@ class _SearchPageState extends State<SearchPage> {
               )
             ],
           ),
-          BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
-            if (state is EmptySearch) {
+          const SizedBox(height: 12),
+          BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              if (state is EmptySearch) {
+                return Expanded(
+                  child: GridView.count(
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: 2,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[100],
+                        child: const Text("He'd have you all unravel at the"),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[200],
+                        child: const Text('Heed not the rabble'),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[300],
+                        child: const Text('Sound of screams but the'),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[400],
+                        child: const Text('Who scream'),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[500],
+                        child: const Text('Revolution is coming...'),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.teal[600],
+                        child: const Text('Revolution, they...'),
+                      ),
+                    ],
+                  ),
+                );
+              } else if (state is Loading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
               return Expanded(
-                child: GridView.count(
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  crossAxisCount: 2,
+                child: ListView(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      color: Colors.teal[100],
-                      child: const Text("He'd have you all unravel at the"),
+                    const SizedBox(height: 20),
+                    MusicAppMusicTile(
+                      music: Music(
+                        name: 'Ano de copa',
+                        image: 'assets/images/ano-de-copa.jpg',
+                        author: Artist(
+                            name: 'Mc Hariel',
+                            photo: 'assets/images/mc-hariel.jpeg'),
+                      ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      color: Colors.teal[200],
-                      child: const Text('Heed not the rabble'),
+                    MusicAppMusicTile(
+                      music: Music(
+                        name: 'GTA SP',
+                        image: 'assets/images/gta-sp.jpeg',
+                        author: Artist(
+                            name: 'Major',
+                            photo: 'assets/images/mc-hariel.jpeg'),
+                      ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      color: Colors.teal[300],
-                      child: const Text('Sound of screams but the'),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      color: Colors.teal[400],
-                      child: const Text('Who scream'),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      color: Colors.teal[500],
-                      child: const Text('Revolution is coming...'),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      color: Colors.teal[600],
-                      child: const Text('Revolution, they...'),
+                    MusicAppMusicTile(
+                      music: Music(
+                        name: 'Rolê no tempo',
+                        image: 'assets/images/role-no-tempo.jpg',
+                        author: Artist(
+                            name: 'Kevin', photo: 'assets/images/kevin.png'),
+                      ),
                     ),
                   ],
                 ),
               );
-            }
-            return Expanded(
-              child: ListView(
-                children: [
-                  const SizedBox(height: 20),
-                  MusicAppMusicTile(
-                    music: Music(
-                      name: 'Ano de copa',
-                      image: 'assets/images/ano-de-copa.jpg',
-                      author: Artist(
-                          name: 'Mc Hariel',
-                          photo: 'assets/images/mc-hariel.jpeg'),
-                    ),
-                  ),
-                  MusicAppMusicTile(
-                    music: Music(
-                      name: 'GTA SP',
-                      image: 'assets/images/gta-sp.jpeg',
-                      author: Artist(
-                          name: 'Major', photo: 'assets/images/mc-hariel.jpeg'),
-                    ),
-                  ),
-                  MusicAppMusicTile(
-                    music: Music(
-                      name: 'Rolê no tempo',
-                      image: 'assets/images/role-no-tempo.jpg',
-                      author: Artist(
-                          name: 'Kevin', photo: 'assets/images/kevin.png'),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }),
+            },
+          ),
         ],
       ),
     );
@@ -161,5 +183,13 @@ class _SearchPageState extends State<SearchPage> {
         ),
       ),
     );
+  }
+
+  _search() {
+    if (_searchController.text == '') {
+      context.read<SearchBloc>().add(ClearSearch());
+      return;
+    }
+    context.read<SearchBloc>().add(Tap(value: _searchController.text));
   }
 }
