@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/app/blocs/home_bloc/bloc.dart';
-import 'package:music_app/app/pages/home_page.dart';
-import 'package:music_app/app/pages/playlist_page.dart';
-import 'package:music_app/app/pages/search_page.dart';
+import 'package:music_app/app/pages/dashboard/home_page.dart';
+import 'package:music_app/app/pages/dashboard/playlist_page.dart';
+import 'package:music_app/app/pages/dashboard/search_page.dart';
 import 'package:music_app/app/widgets/components/music_app_bottom_navigation_bar.dart';
 
 class DashboardPage extends StatefulWidget {

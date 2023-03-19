@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/api/repositories/core_repository.dart';
-import 'package:music_app/app/pages/dashboard_page.dart';
+import 'package:music_app/app/pages/dashboard/dashboard_page.dart';
 
 import 'blocs/home_bloc/bloc.dart';
 import 'blocs/search_bloc/bloc.dart';
