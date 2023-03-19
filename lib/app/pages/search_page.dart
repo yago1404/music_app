@@ -143,11 +143,13 @@ class _SearchPageState extends State<SearchPage> {
   _checkClear() {
     if (_searchController.text == '') {
       context.read<SearchBloc>().add(ClearSearch());
+      return true;
     }
+    return false;
   }
 
   _search() {
-    _checkClear();
+    if (_checkClear()) return;
     context.read<SearchBloc>().add(Tap(value: _searchController.text));
   }
 }
